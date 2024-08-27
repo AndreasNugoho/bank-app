@@ -1,4 +1,4 @@
-import { formatAmount } from '@/lib/utils'
+import { formatAmount, formatAmountIdr } from '@/lib/utils'
 import React from 'react'
 
 const TotalBalanceBox = ({
@@ -20,7 +20,7 @@ const TotalBalanceBox = ({
                   </p>
 
                   <p className='total-balance-amount flex-center gap-2'> 
-                      {formatAmount(totalCurrentBalance)}
+                      {formatAmountIdr(totalCurrentBalance)}
                   </p>
               </div>
           </div>
