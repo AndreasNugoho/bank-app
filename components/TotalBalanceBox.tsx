@@ -1,3 +1,4 @@
+import { formatAmountIdr } from '@/lib/utils'
 import AnimatedCounter from './AnimatedCounter'
 
 const TotalBalanceBox = ({
@@ -19,7 +20,7 @@ const TotalBalanceBox = ({
                   </p>
 
                   <p className='total-balance-amount flex-center gap-2'> 
-                      <AnimatedCounter amount={totalCurrentBalance}  />
+                      {formatAmountIdr(totalCurrentBalance)}
                   </p>
               </div>
           </div>
