@@ -21,6 +21,8 @@ const Home = () => {
             
           />
         </header>
+
+        RECENT TRANSACTION
       </div>
     </section>
   )
