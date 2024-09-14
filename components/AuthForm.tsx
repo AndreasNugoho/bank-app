@@ -27,9 +27,12 @@ const formSchema = z.object({
 const AuthForm = ({ type }: { type: string }) => {
     const [user, setUser] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
+
+    const formSchema = authFormSchema(type);
+
     // 1. Define your form.
-    const form = useForm<z.infer<typeof authFormSchema>>({
-        resolver: zodResolver(authFormSchema),
+    const form = useForm<z.infer<typeof formSchema>>({
+        resolver: zodResolver(formSchema),
         defaultValues: {
             email: "",
             password:''
@@ -37,10 +40,7 @@ const AuthForm = ({ type }: { type: string }) => {
     })
     
     // 2. Define a submit handler.
-    function onSubmit(values: z.infer<typeof authFormSchema>) {
-        // Do something with the form values.
-        // ✅ This will be type-safe and validated.
-        setIsLoading(true)
+    function onSubmit(values: z.infer<typeof formSchema>) {
         console.log(values)
         console.log(false)
     }
