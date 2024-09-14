@@ -27,7 +27,7 @@ const formSchema = z.object({
 })
 
 const AuthForm = ({ type }: { type: string }) => {
-    const router = useRouter();
+    // const router = useRouter();
     const [user, setUser] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -43,23 +43,23 @@ const AuthForm = ({ type }: { type: string }) => {
     })
     
     // 2. Define a submit handler.
-    const onSubmit = async(values: z.infer<typeof formSchema>) => {
+    const onSubmit = async(data: z.infer<typeof formSchema>) => {
         setIsLoading(true);
             try {
             // Sign up with Appwrite & create plaid token
                 if(type === 'sign-up') {
-                const newUser = await signUp(data);
+                    const newUser = await signUp(data);
 
-                setUser(newUser);
+                    setUser(newUser);
                 }
 
                 if(type === 'sign-in') {
-                const response = await signIn({
-                    email: data.email,
-                    password: data.password,
-                })
+                // const response = await signIn({
+                //     email: data.email,
+                //     password: data.password,
+                // })
 
-                if(response) router.push('/')
+                // if(response) router.push('/')
                 }
                 
             } catch (error) {
@@ -68,7 +68,7 @@ const AuthForm = ({ type }: { type: string }) => {
                 setIsLoading(false);
             }
         }
-    }
+    // }
 
     return (
         <section className="auth-form"> 
