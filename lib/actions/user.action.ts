@@ -3,6 +3,7 @@
 import { cookies } from "next/headers";
 import { createAdminClient, createSessionClient } from "../appwrite";
 import { ID } from "node-appwrite";
+import { parseStringify } from "../utils";
 
 export const signIn = async () => {
     try {
@@ -30,6 +31,8 @@ export const signUp = async (userData: SignUpParams) => {
             sameSite: "strict",
             secure: true,
         });
+        return parseStringify(newUserAccount);
+
     } catch (error) {
         console.log('error', error);
     }
