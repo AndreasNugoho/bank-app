@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { z } from "zod"
+import { set, z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Button } from "@/components/ui/button"
@@ -20,6 +20,7 @@ import CustomInput from './CustomInput'
 import { authFormSchema } from '@/lib/utils'
 import { Loader2 } from 'lucide-react'
 import { useRouter } from 'next/router'
+import { signIn, signUp } from '@/lib/actions/user.action'
  
 const formSchema = z.object({
     email: z.string().email(),
@@ -45,15 +46,16 @@ const AuthForm = ({ type }: { type: string }) => {
     const onSubmit = async(values: z.infer<typeof formSchema>) => {
         setIsLoading(true);
         try {
-            if (type === 'sign-in') { 
-
-            }
             if (type === 'sign-up') { 
-                // const response = await signUp({
-                //     email: data.email,
-                //     password: data.password,
-                // });
-                // if (response) router.push('/');
+                const newUser = await signUp(data);
+                setUser(newUser);
+            }
+            if (type === 'sign-in') { 
+                const response = await signIn({
+                    email: data.email,
+                    password: data.password,
+                });
+                if (response) router.push('/');
             }
 
             console.log(values)
